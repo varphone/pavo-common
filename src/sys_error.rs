@@ -1,10 +1,24 @@
+use std::borrow::Cow;
+use std::ffi::CStr;
+
 /// 定义系统错误。
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Default, PartialEq, Eq)]
 pub struct SysError(i32);
 
 impl std::fmt::Display for SysError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, r#"Code={}, Reason="{{}}")"#, self.0)
+        write!(f, "{}", self.to_str())
+    }
+}
+
+impl std::fmt::Debug for SysError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            r#"SysError {{ Code={}, Reason={:?} }}"#,
+            self.0,
+            self.to_str()
+        )
     }
 }
 
@@ -50,6 +64,12 @@ impl SysError {
         } else {
             Ok(other)
         }
+    }
+
+    /// 返回文本描述。
+    #[cfg(unix)]
+    pub fn to_str(&self) -> Cow<str> {
+        unsafe { CStr::from_ptr(libc::strerror(self.0)).to_string_lossy() }
     }
 }
 
