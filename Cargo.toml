@@ -1,0 +1,20 @@
+[package]
+name = "pavo-common"
+version = "0.1.0"
+authors = ["Varphone Wong <varphone@qq.com>"]
+edition = "2018"
+
+# Metadata for Publish
+description = """
+Common Types for the Pavo Framework.
+"""
+documentation = "https://docs.rs/pavo-common"
+homepage = "https://github.com/varphone/pavo-common"
+readme = "README.md"
+categories = ["embedded", "external-ffi-bindings"]
+license = "MIT"
+
+[dependencies]
+
+[target.'cfg(unix)'.dependencies]
+libc = "^0.2.66"
