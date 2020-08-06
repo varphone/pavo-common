@@ -17,4 +17,4 @@ license = "MIT"
 [dependencies]
 
 [target.'cfg(unix)'.dependencies]
-libc = "^0.2.66"
+libc = "0.2"
