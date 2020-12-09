@@ -9,7 +9,7 @@ description = """
 Common Types for the Pavo Framework.
 """
 documentation = "https://docs.rs/pavo-common"
-homepage = "https://github.com/varphone/pavo-common"
+homepage = "https://github.com/vaxpl/pavo-common"
 readme = "README.md"
 categories = ["embedded", "external-ffi-bindings"]
 license = "MIT"
